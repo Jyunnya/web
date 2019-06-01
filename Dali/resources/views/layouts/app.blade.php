@@ -26,15 +26,13 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Dali
                 </a>
-                @auth  
+                @auth
                 <form id="search" action="/search" method="POST">
                            @csrf　
                            　<input type="search" name="search" class="form-control" style="width: 200px" placeholder="キーワード検索">
                             <button class="btn btn-primary">
-                                    {{ __('検索') }}
-                            </button>
-                       
-                                     
+                                    {{ __('検索') }} <!-- 少し編集 -->
+                            </button>                          
                          </form>
              
                 @endauth
