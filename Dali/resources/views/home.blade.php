@@ -28,7 +28,7 @@
                                	<form method="POST" id="delete" action="home/{{$d->created_at}}">
                               {{ csrf_field() }}
                               <input type="submit" name="btn" class="btn bt-primary" value="書き込みの削除">
-                             </form>
+                             </form> <!-- ちょっと変更 -->
                                 </div>
                             </li>
                         </ul>
