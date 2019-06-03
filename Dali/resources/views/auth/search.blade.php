@@ -3,6 +3,7 @@
 <div class="container">
    <div class="row justify-content-center">
         <div class="col-md-8">
+         <p>検索結果</p>
             @foreach($getdata as $d)
             <br>
              <div class="card">

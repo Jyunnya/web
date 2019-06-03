@@ -10,6 +10,7 @@
             @endif
             <p>{{$d->name}}さんのプロフィール</p>
             <p>{{$d->created_at}}に登録</p>
+            <p>{{$d->bio}}</p>
     @endforeach
 	 <a href="/edit" class="btn btn-primary">プロフィールの編集</a>
      <br> 

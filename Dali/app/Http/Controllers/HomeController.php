@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\poster;
 use App\profile;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 class HomeController extends Controller
@@ -106,11 +107,13 @@ class HomeController extends Controller
           else{
             $image = Auth::user()->image_top;
           }
+          $bio = $request->bio;
            $this->validate($request, $rules,$message);
         $pro::where('email',Auth::user()->email)->update([
           'name' => $name,
           'email' => $email,
           'image_top' => $image,
+          'bio' => $bio,
         ]);
         $md = new poster;
         $md::where('email',Auth::user()->email)->update([
@@ -129,15 +132,16 @@ class HomeController extends Controller
       return view('auth.search');
     }
     public function get(Request $request){
-    $md = new poster;
     $keyword = $request->search;
-    $getdata = null;
-    if (!empty($keyword)) {
-      $getdata = $md->where('email','like','%'.$keyword.'%')->orWhere('name','like','%'.$keyword.'%')->orderBy('created_at','desc');
+    if (!empty($keyword)){
+      $getdata = DB::table('posts')->where('name','like','%'.$keyword.'%')->orWhere('content','like','%'.$keyword.'%')->orderBy('created_at','desc')->get();
     }
-    if (empty($getdata)) {
+    if ($getdata->isEmpty()){
       return view('auth.nothing');
     }
-    return view('auth.search')->with('getdata',$getdata);
+    return view('auth.search')->with([
+      'getdata' => $getdata,
+      'keyword' => $keyword,
+    ]);
     }
 }

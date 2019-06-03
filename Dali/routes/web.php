@@ -12,7 +12,6 @@
 */
 
 
-
 Route::get('sample', 'databaseController@index');
 Route::post('sample/{id}', 'databaseController@delete');
 Route::get('insert','databaseController@create');// URL/insertの画面でGETを受け取ればdatabaseコントローラーのcreate関数を作動させる

@@ -27,14 +27,11 @@
                     Dali
                 </a>
                 @auth
-                <form id="search" action="/search" method="POST">
-                           @csrf　
+                        <form id="search" action="/search" method="POST" style="display: inline-flex;">
                            　<input type="search" name="search" class="form-control" style="width: 200px" placeholder="キーワード検索">
-                            <button class="btn btn-primary">
-                                    {{ __('検索') }} <!-- 少し編集 -->
-                            </button>                          
+                             <input type="submit" name="btn" class="btn btn-primary" value="検索">
+                           @csrf                      
                          </form>
-             
                 @endauth
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -79,7 +76,7 @@
                             </li>
                     </ul>
                     @auth
-                        <a href="/draw" class="btn btn-primary" aria-haspopup="true" aria-expanded="false" v-pre>書き込み</a>
+                        <a href="/draw" class="btn btn-primary" aria-haspopup="true" aria-expanded="false" v-pre>アイデアを投稿</a>
                    @endauth
                     @endguest
                 </div>

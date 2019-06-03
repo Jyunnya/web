@@ -55,6 +55,14 @@
                                 @enderror
                             </div>
                         </div>
+                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('紹介文') }}</label>
+                <textarea name="bio" rows="4" cols="40" style=" height: 100px " class="form-control @error('content') is-invalid @enderror">{{$d->bio}}</textarea>
+                    @error('content')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                    <br>
                     <div align="right">
                      <a href="/profile" class="btn btn-primary">キャンセル</a>
                     <button type="submit" class="btn btn-primary">
