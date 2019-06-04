@@ -38,16 +38,23 @@ class HomeController extends Controller
     }
     public function draw(){
         return view('auth.draw');
+    } 
+
+    public function form(){
+      return view('auth.image');
+    }
+
+    public function finish(){
+       return view('auth.finish');
     }
     public function insert(Request $request){
            $md = new poster;
            $rules = [
-            'content' => 'required',
-            'image' => 'image'
+           'name' => 'required', 
+           'content' => 'required',
            ];
            $message = [
             "required" => "必須項目です",
-            "image" => "画像・動画を選択してください"
             ];
            $this->validate($request, $rules,$message);
            
@@ -55,20 +62,27 @@ class HomeController extends Controller
            $email = Auth::user()->email;
            $image_top = Auth::user()->image_top; 
            $content = $request->content;
-           if($request->file('image')){
+           $title = $request->name;
+          
+           $md->name = $name;
+           $md->email = $email;
+           $md->image_top = $image_top;
+           $md->content = $content;
+           $md->title = $title;
+           $md->save();
+          return redirect('/home');
+    }
+
+    public function image(){
+
+          if($request->file('image')){
            $filename = $request->file('image')->getClientOriginalName(); //ファイルの名前は元のやつを使う
            $request->file('image')->storeAs('public/images',$filename);// storage/app/public/storage/images の中に格納する あらかじめこのフォルダーをphp artisan storage:linkでpublicからでも使えるようにする
           }
           else{
             $filename = null;
           }
-           $md->image = $filename;
-           $md->name = $name;
-           $md->email = $email;
-           $md->image_top = $image_top;
-           $md->content = $content;
-           $md->save();
-          return redirect()->route('home');
+          $md->image = $filename;
     }
     public function profile(){
         $pro = new profile;

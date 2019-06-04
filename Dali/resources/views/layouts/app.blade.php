@@ -76,7 +76,7 @@
                             </li>
                     </ul>
                     @auth
-                        <a href="/draw" class="btn btn-primary" aria-haspopup="true" aria-expanded="false" v-pre>アイデアを投稿</a>
+                        <a href="/draw/idea" class="btn btn-primary" aria-haspopup="true" aria-expanded="false" v-pre>アイデアを公開</a>
                    @endauth
                     @endguest
                 </div>

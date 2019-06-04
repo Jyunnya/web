@@ -21,8 +21,13 @@ Route::post('insert','databaseController@save');// URL/insertの画面でPOSTを
 Auth::routes();  //ユーザー認証に必要なルートが入ってる
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/draw', 'HomeController@draw');
-Route::post('/draw', 'HomeController@insert');
+
+Route::get('/draw/idea', 'HomeController@draw'); //ideaパラメータで統一
+
+Route::get('/img/idea', 'HomeController@form'); //ideaパラメータで統一
+
+Route::get('/finish/idea', 'HomeController@finish'); //ideaパラメータで統一
+
 Route::get('/profile', 'HomeController@profile');
 
 Route::get('/edit', 'HomeController@edit');

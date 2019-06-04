@@ -25,3 +25,12 @@ text-decoration:none;
 .nav-item{
 	text-decoration:none;
 }
+.mark{
+	  background: #FF3366;
+	  color: #FFFFFF;
+	  border-radius: 10px;
+	  text-align: center;
+}
+.sub{
+	  text-align: center;	
+}
