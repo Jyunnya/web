@@ -22,11 +22,10 @@ Auth::routes();  //ユーザー認証に必要なルートが入ってる
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/draw/idea', 'HomeController@draw'); //ideaパラメータで統一
+Route::get('/draw', 'HomeController@draw'); 
+Route::post('/draw', 'HomeController@insert'); 
 
-Route::get('/img/idea', 'HomeController@form'); //ideaパラメータで統一
-
-Route::get('/finish/idea', 'HomeController@finish'); //ideaパラメータで統一
+Route::post('/finish/{id}', 'HomeController@edit_done'); 
 
 Route::get('/profile', 'HomeController@profile');
 

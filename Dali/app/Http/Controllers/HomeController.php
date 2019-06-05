@@ -38,23 +38,18 @@ class HomeController extends Controller
     }
     public function draw(){
         return view('auth.draw');
-    } 
-
-    public function form(){
-      return view('auth.image');
-    }
-
-    public function finish(){
-       return view('auth.finish');
     }
     public function insert(Request $request){
            $md = new poster;
            $rules = [
-           'name' => 'required', 
+           'name' => 'required|max:20', 
            'content' => 'required',
+           'image' => 'required|image',
            ];
            $message = [
             "required" => "必須項目です",
+            "name.max" => "20文字以内で入力してください",
+            "image" => "画像を選択してください",
             ];
            $this->validate($request, $rules,$message);
            
@@ -63,26 +58,27 @@ class HomeController extends Controller
            $image_top = Auth::user()->image_top; 
            $content = $request->content;
            $title = $request->name;
-          
+           $filename = $request->file('image')->getClientOriginalName(); //ファイルの名前は元のやつを使う
+           $request->file('image')->storeAs('public/images',$filename);// storage/app/public/storage/images の中に格納する あらかじめこのフォルダーをphp artisan storage:linkでpublicからでも使えるようにする
+           $i_id = substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 10);
            $md->name = $name;
            $md->email = $email;
+           $md->image = $filename;
            $md->image_top = $image_top;
            $md->content = $content;
            $md->title = $title;
+           $md->i_id = $i_id;
            $md->save();
-          return redirect('/home');
+           
+           $data =  DB::table('posts')->where('i_id',$i_id)->get();
+
+           return view('auth.finish')->with('data',$data);
     }
+    public function edit_done(Request $request, $id){
+      
+      $data =  DB::table('posts')->where('i_id',$id)->get();
 
-    public function image(){
-
-          if($request->file('image')){
-           $filename = $request->file('image')->getClientOriginalName(); //ファイルの名前は元のやつを使う
-           $request->file('image')->storeAs('public/images',$filename);// storage/app/public/storage/images の中に格納する あらかじめこのフォルダーをphp artisan storage:linkでpublicからでも使えるようにする
-          }
-          else{
-            $filename = null;
-          }
-          $md->image = $filename;
+      return view('auth.idea_edit')->with('data',$data);
     }
     public function profile(){
         $pro = new profile;

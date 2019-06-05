@@ -11,7 +11,6 @@
             @endif
             <p>{{$d->name}}さん</p>
     @endforeach
-
     <div class="row justify-content-center">
         <div class="col-md-8">
             @foreach($data as $d)
@@ -49,6 +48,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <b>{{$d->title}}</b><br>
                     {{$d->content}}
                     <br>
         @if(isset($d->image))
