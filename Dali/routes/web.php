@@ -26,6 +26,7 @@ Route::get('/draw', 'HomeController@draw');
 Route::post('/draw', 'HomeController@insert'); 
 
 Route::post('/finish/{id}', 'HomeController@edit_done'); 
+Route::post('/edit_done/{id}', 'HomeController@update'); 
 
 Route::get('/profile', 'HomeController@profile');
 

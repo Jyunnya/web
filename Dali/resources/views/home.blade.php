@@ -26,9 +26,16 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                	<form method="POST" id="delete" action="home/{{$d->created_at}}">
                               {{ csrf_field() }}
-                              <input type="submit" name="btn" class="btn bt-primary" value="書き込みの削除">
-                             </form> <!-- ちょっと変更 -->
-                                </div>
+                              <input type="submit" name="btn" class="btn btn-primary" value="削除" style="width:200px">
+                              <!-- ちょっと変更 -->
+                          </form>
+                          <br>
+                          <form action="/finish/{{$d->i_id}}" method="post">
+                            {{ csrf_field() }}
+                          <input type="submit" name="btn" class="btn btn-primary" value="編集" style="width:200px">
+                          </form>
+                                 </div>
+
                             </li>
                         </ul>
                    @endif

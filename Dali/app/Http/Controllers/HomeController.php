@@ -80,6 +80,21 @@ class HomeController extends Controller
 
       return view('auth.idea_edit')->with('data',$data);
     }
+    public function update(Request $request, $id){
+
+      if($request->file('image')){
+           $image = $request->file('image')->getClientOriginalName(); //ファイルの名前は元のやつを使う
+           $request->file('image')->storeAs('public/images',$image);// storage/app/public/storage/images の中に格納する あらかじめこのフォルダーをphp artisan storage:linkでpublicからでも使えるようにする
+          }
+
+      DB::table('posts')->where('i_id',$id)->update([
+      'title' => $request->name,
+      'content' => $request->content,
+      'image' => $image,
+      ]);
+      $data = DB::table('posts')->where('i_id',$id)->get();
+      return view('auth.finish')->with('data',$data);
+    }
     public function profile(){
         $pro = new profile;
         $data_mine = $pro->getdata();
