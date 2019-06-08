@@ -1,6 +1,7 @@
 @charset "utf-8";
 .image_post{
 	border-radius: 20px;
+
 }
 .form-control{
     border-radius: 0.67em;   /* 角丸 */
@@ -33,4 +34,23 @@ text-decoration:none;
 }
 .sub{
 	  text-align: center;	
+}
+.ideacard-body{
+		cursor: pointer;
+			padding:10px; /* a要素内の余白 */
+}
+.ideacard-body:hover {
+    filter:alpha(opacity=70);/* IE 6,7*/
+    -ms-filter: "alpha(opacity=70)";/* IE 8,9 */
+    -moz-opacity:0.7;/* FF , Netscape */
+    -khtml-opacity: 0.7;/* Safari 1.x */
+    opacity:0.7;
+    zoom:1;/*IE*/
+}
+.ideacard-body .Link{
+	display:block;
+	position: absolute;
+	width: 100%; /* 横幅 */
+	height: 100%;
+	padding:10px; /* a要素内の余白 */
 }

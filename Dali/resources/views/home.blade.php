@@ -15,7 +15,7 @@
         <div class="col-md-8">
             @foreach($data as $d)
             <br>
-             <div class="card dali">
+             <div class="card">
                 <!-- ボックスのタイトル -->
                 <div class="card-header">
                 	@if(Auth::user()->email == $d->email)
@@ -35,11 +35,9 @@
                           <input type="submit" name="btn" class="btn btn-primary" value="編集" style="width:200px">
                           </form>
                                  </div>
-
                             </li>
                         </ul>
                    @endif
-
                     @if($d->image_top)
 
                     <img src="{{asset('storage/images/' . $d->image_top)}}" width='50' height='50' class ='image_top'>
@@ -49,20 +47,20 @@
 
                  {{$d->name}} / {{$d->created_at}}
                 </div>
-                <div class="card-body">
+                <div class="ideacard-body">
+                 <a class ="Link" href="/read/{{$d->i_id}}"></a>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-                    <b>{{$d->title}}</b><br>
-                    {{$d->content}}
-                    <br>
+                    <h1><b>{{$d->title}}</b></h1><br>
+                    <h3>{{$d->content}}</h3>
         @if(isset($d->image))
         <img src="{{asset('storage/images/' . $d->image)}}" width='200' height='200' class ='image_post'>
       @endif
-                </div>
             </div>
+        </div>
             @endforeach
         </div>
     </div>

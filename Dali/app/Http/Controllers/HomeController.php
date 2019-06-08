@@ -159,7 +159,7 @@ class HomeController extends Controller
     public function get(Request $request){
     $keyword = $request->search;
     if (!empty($keyword)){
-      $getdata = DB::table('posts')->where('name','like','%'.$keyword.'%')->orWhere('content','like','%'.$keyword.'%')->orderBy('created_at','desc')->get();
+      $getdata = DB::table('posts')->where('name','like','%'.$keyword.'%')->orWhere('content','like','%'.$keyword.'%')->orWhere('title','like','%'.$keyword.'%')->orderBy('created_at','desc')->get();
     }
     if ($getdata->isEmpty()){
       return view('auth.nothing');
@@ -168,5 +168,9 @@ class HomeController extends Controller
       'getdata' => $getdata,
       'keyword' => $keyword,
     ]);
+    }
+    public function read(Request $request, $id){
+      $data = DB::table('posts')->where('i_id',$id)->get();
+      return view('auth.read')->with('data',$data);
     }
 }
