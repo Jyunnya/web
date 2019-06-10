@@ -9,7 +9,7 @@
             @else
             <img src="{{asset('storage/images/man.svg')}}" width='100' height='100' class ='image_top_defalut'>
             @endif
-            <p>{{$d->name}}さん</p>
+            <a href="/profile" class="navbar-brand"><p>{{$d->name}}さん</p></a>
     @endforeach
     <div class="row justify-content-center">
         <div class="col-md-8">

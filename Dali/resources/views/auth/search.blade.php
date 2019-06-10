@@ -16,13 +16,15 @@
                     @endif
                  {{$d->name}} / {{$d->created_at}}
                 </div>
-                <div class="card-body">
+                <div class="ideacard-body">
+                  <a class ="Link" href="/read/{{$d->i_id}}"></a>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{$d->content}}
+                    <h1><b>{{$d->title}}</b></h1><br>
+                    <h3>{{$d->content}}</h3>
                     <br>
         @if(isset($d->image))
         <img src="{{asset('storage/images/' . $d->image)}}" width='200' height='200' class ='image_post'>

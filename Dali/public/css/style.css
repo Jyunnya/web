@@ -54,3 +54,6 @@ text-decoration:none;
 	height: 100%;
 	padding:10px; /* a要素内の余白 */
 }
+.url_mine{
+	display: block;
+}

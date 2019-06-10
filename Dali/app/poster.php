@@ -18,7 +18,7 @@ class poster extends Model
     return $data;
   }
 public function getprofile(){
-	$data = DB::table($this->table)->where('email',Auth::user()->email)->get();
+	$data = DB::table($this->table)->where('email',Auth::user()->email)->orderBy('created_at','desc')->get();
     return $data;
 }
 }
