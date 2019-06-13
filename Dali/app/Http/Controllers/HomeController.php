@@ -173,4 +173,13 @@ class HomeController extends Controller
       $data = DB::table('posts')->where('i_id',$id)->get();
       return view('auth.read')->with('data',$data);
     }
+    public function other(Request $request, $id){
+      $data = DB::table('posts')->where('name',$id)->get();
+      $data_other = DB::table('users')->where('name',$id)->get();
+      return view('auth.other')->with([
+        'data' => $data,
+        'data_other' => $data_other,
+      ]);
 }
+}
+

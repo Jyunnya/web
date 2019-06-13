@@ -39,13 +39,16 @@
                         </ul>
                    @endif
                     @if($d->image_top)
-
                     <img src="{{asset('storage/images/' . $d->image_top)}}" width='50' height='50' class ='image_top'>
                     @else
                     <img src="{{asset('storage/images/man.svg')}}" width='40' height='40' class ='image_top_defalut'>
                     @endif
-
-                 {{$d->name}} / {{$d->created_at}}
+                    @if(Auth::user()->email == $d->email)
+                    <a href="/profile" style="color: black;">
+                    @else
+                    <a href="/other/{{$d->name}}" style="color: black;" >
+                    @endif
+                 {{$d->name}}</a> / {{$d->created_at}}
                 </div>
                 <div class="ideacard-body">
                  <a class ="Link" href="/read/{{$d->i_id}}"></a>
